@@ -1,8 +1,19 @@
 module BowlingScorer
   class Lexer
-    getter game : String
+    getter game    : String
     property index : Int32
-    property char : Char | TokenType
+    property char  : Char | TokenType
+
+    # String representation of our tokens.
+    STRIKE  = "X"
+    SPARE   = "/"
+    GUTTER  = "-"
+    NUMBERS = "0123456789"
+
+    # Char representation of our tokens.
+    STRIKE_C = 'X'
+    SPARE_C  = '/'
+    GUTTER_C = '-'
 
     def initialize(@game = game)
       @index = 0
@@ -14,18 +25,18 @@ module BowlingScorer
       end
     end
 
-    def next_token
+    def next_token : Token
       if char != TokenType::EOF
         case char
-        when 'X'
+        when STRIKE_C
           consume
-          return Token.new(TokenType::STRIKE, "X")
-        when '/'
+          return Token.new(TokenType::STRIKE, STRIKE)
+        when SPARE_C
           consume
-          return Token.new(TokenType::SPARE, "/")
-        when '-'
+          return Token.new(TokenType::SPARE, SPARE)
+        when GUTTER_C
           consume
-          return Token.new(TokenType::GUTTER, "-")
+          return Token.new(TokenType::GUTTER, GUTTER)
         else
           if number?
             number = char
@@ -40,11 +51,11 @@ module BowlingScorer
       return Token.new(TokenType::EOF, "!")
     end
 
-    private def number?
-      "0123456789".includes?(char.to_s)
+    private def number? : Bool
+      NUMBERS.includes?(char.to_s)
     end
 
-    private def consume
+    private def consume : Void
       self.index += 1
 
       if index >= game.size

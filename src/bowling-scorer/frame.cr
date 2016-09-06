@@ -20,14 +20,14 @@ module BowlingScorer
     # Special case for frame 10 with three rolls.
     # If not frame 10 a frame is complete if its either a strike or
     # roll one and roll two are present.
-    def completed?
+    def completed? : Bool
+      return false if !roll_one?
+
       if frame == 10
-        if roll_one? == nil
-          return false
-        elsif roll_two? == nil ||
+        if !roll_two? ||
           (roll_two.token_type == TokenType::SPARE ||
           roll_two.token_type == TokenType::STRIKE) &&
-           roll_three? == nil
+           !roll_three?
           return false
         end
 
@@ -35,35 +35,19 @@ module BowlingScorer
       end
 
       # Every frame below 10
-      if roll_one? == nil
-        return false
-      elsif roll_one.token_type == TokenType::STRIKE
-        return true
-      elsif roll_two? != nil
-        return true
-      end
-
-      false # Default
+      roll_one.token_type == TokenType::STRIKE || roll_two? != nil
     end
 
     # set_roll helps us set the next roll in the frame.
     # Special case for frame 10 with three rolls.
     # Checks which roll starting with one is empty.
-    def set_roll(token : Token)
-      if frame == 10
-        if roll_one? == nil
-          self.roll_one = token
-        elsif roll_two? == nil
-          self.roll_two = token
-        else
-          self.roll_three = token
-        end
-      else
-        if roll_one? == nil
-          self.roll_one = token
-        else
-          self.roll_two = token
-        end
+    def set_roll(token : Token) : Void
+      if roll_one? == nil
+        self.roll_one = token
+      elsif roll_two? == nil
+        self.roll_two = token
+      elsif frame == 10 && roll_three? == nil
+        self.roll_three = token
       end
     end
   end
