@@ -10,7 +10,7 @@ Add it to your shard.yml:
 
 ```
 dependencies:
-  redis:
+  bowling-scorer:
     github: amedeiros/bowling-scorer
     version: ~> 0.1.0
 ```
