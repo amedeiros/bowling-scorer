@@ -31,17 +31,13 @@ module BowlingScorer
       while current.token_type != TokenType::EOF
         if current.token_type == TokenType::STRIKE
           self.score += calculate_strike
-          current_frame.set_roll(current)
         elsif current.token_type == TokenType::SPARE
           self.score += calculate_spare
-          current_frame.set_roll(current)
         elsif current.token_type == TokenType::NUMBER
           self.score += calculate_number
-          current_frame.set_roll(current)
-        elsif current.token_type == TokenType::GUTTER
-          current_frame.set_roll(current)
         end
 
+        current_frame.set_roll(current)
         process_frame if current_frame.completed?
         consume
       end
