@@ -1,26 +1,49 @@
 # bowling-scorer
 
-TODO: Write a description here
+Solution to the bowling scorer problem on reddit found [here](https://m.reddit.com/r/ProgrammingPrompts/comments/3oxidq/medium_bowling_scores/?utm_source=mweb_redirect&compact=true).
+
+Gave me an excuse to write a lexer/parser.
 
 ## Installation
 
+Add it to your shard.yml:
 
-TODO: Write installation instructions here
+```
+dependencies:
+  redis:
+    github: amedeiros/bowling-scorer
+    version: ~> 0.1.0
+```
+
+`$ crystal deps`
 
 
 ## Usage
 
+```crystal
+# Run the games from the reddit challenge.
+crystal src/play.cr
 
+# Or require the library and play your own.
+require 'bowling-scorer'
+BowlingScorer::Game.play("X-/X5-8/9-X811-4/X")
 
-TODO: Write usage instructions here
+# Or use the lexer/parser
+lexer  = BowlingScorer::Lexer.new("X-/X5-8/9-X811-4/X")
+parser = BowlingScorer::Parser.new(lexer)
+
+parser.parse
+```
 
 ## Development
 
-TODO: Write development instructions here
+`$ crystal spec`
+
+`$ crystal tool format`
 
 ## Contributing
 
-1. Fork it ( https://github.com/[your-github-name]/bowling-scorer/fork )
+1. Fork it ( https://github.com/amedeiros/bowling-scorer/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -28,4 +51,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [[your-github-name]](https://github.com/[your-github-name]) amedeiros - creator, maintainer
+- [amedeiros](https://github.com/amedeiros) Andrew Medeiros - creator, maintainer

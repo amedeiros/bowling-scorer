@@ -3,7 +3,7 @@ require "./bowling-scorer/*"
 module BowlingScorer
   class Game
     def self.play(game, display = true)
-      lexer  = BowlingScorer::Lexer.new(game)
+      lexer = BowlingScorer::Lexer.new(game)
       parser = BowlingScorer::Parser.new(lexer)
       parser.parse
 

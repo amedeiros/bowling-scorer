@@ -3,7 +3,7 @@ require "./spec_helper"
 describe BowlingScorer::Parser do
   describe "parser" do
     it "should parse a frame with a strike correctly" do
-      lexer  = BowlingScorer::Lexer.new("X")
+      lexer = BowlingScorer::Lexer.new("X")
       parser = BowlingScorer::Parser.new(lexer)
       parser.parse
 
@@ -11,7 +11,7 @@ describe BowlingScorer::Parser do
     end
 
     it "should parse a frame with a number in the first roll and spare in the second" do
-      lexer  = BowlingScorer::Lexer.new("1/")
+      lexer = BowlingScorer::Lexer.new("1/")
       parser = BowlingScorer::Parser.new(lexer)
       parser.parse
 
@@ -20,7 +20,7 @@ describe BowlingScorer::Parser do
 
     it "should parse a frame with a spare when the following roll is a number" do
       # Frame one should be 10 for spare + 1 for the following roll being 1
-      lexer  = BowlingScorer::Lexer.new("-/1-")
+      lexer = BowlingScorer::Lexer.new("-/1-")
       parser = BowlingScorer::Parser.new(lexer)
       parser.parse
 
@@ -29,7 +29,7 @@ describe BowlingScorer::Parser do
 
     it "should parse a frame with a spare when the following roll is a strike" do
       # Frame one should be 10 for spare + 20 for the following roll being a strike
-      lexer  = BowlingScorer::Lexer.new("-/X")
+      lexer = BowlingScorer::Lexer.new("-/X")
       parser = BowlingScorer::Parser.new(lexer)
       parser.parse
 
@@ -38,7 +38,7 @@ describe BowlingScorer::Parser do
 
     it "should parse a frame with a spare when the following roll is a spare" do
       # Frame one should be 10 for spare + 20 for the following roll being a spare
-      lexer  = BowlingScorer::Lexer.new("-//")
+      lexer = BowlingScorer::Lexer.new("-//")
       parser = BowlingScorer::Parser.new(lexer)
       parser.parse
 
@@ -47,7 +47,7 @@ describe BowlingScorer::Parser do
 
     it "should parse a frame with three strikes in a row correctly" do
       # Frame one should be 30 because frame two and three are also strikes
-      lexer  = BowlingScorer::Lexer.new("XXX")
+      lexer = BowlingScorer::Lexer.new("XXX")
       parser = BowlingScorer::Parser.new(lexer)
       parser.parse
 
@@ -55,7 +55,7 @@ describe BowlingScorer::Parser do
     end
 
     it "should parse a frame with just numbers correctly" do
-      lexer  = BowlingScorer::Lexer.new("12")
+      lexer = BowlingScorer::Lexer.new("12")
       parser = BowlingScorer::Parser.new(lexer)
       parser.parse
 
@@ -63,7 +63,7 @@ describe BowlingScorer::Parser do
     end
 
     it "should parse a full game correctly" do
-      lexer  = BowlingScorer::Lexer.new("X-/X5-8/9-X811-4/X")
+      lexer = BowlingScorer::Lexer.new("X-/X5-8/9-X811-4/X")
       parser = BowlingScorer::Parser.new(lexer)
       parser.parse
 

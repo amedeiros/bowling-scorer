@@ -6,7 +6,7 @@ module BowlingScorer
   # The resulted list repesents a complete game with each frame having the
   # correct score for that frame.
   class Parser
-    getter lexer  : Lexer
+    getter lexer : Lexer
     getter frames : Array(Frame)
     getter tokens : Array(Token)
     getter lookahead : Int32
@@ -70,7 +70,7 @@ module BowlingScorer
 
     private def calculate_number : Int32
       if !current_frame.roll_one? && match?(1, TokenType::SPARE) ||
-        frame == 10 && !current_frame.roll_two? && match?(1, TokenType::SPARE)
+         frame == 10 && !current_frame.roll_two? && match?(1, TokenType::SPARE)
         return 0
       end
 

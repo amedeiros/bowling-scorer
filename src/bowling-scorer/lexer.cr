@@ -1,8 +1,8 @@
 module BowlingScorer
   class Lexer
-    getter game    : String
+    getter game : String
     property index : Int32
-    property char  : Char | TokenType
+    property char : Char | TokenType
 
     # String representation of our tokens.
     STRIKE  = "X"

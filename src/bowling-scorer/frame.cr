@@ -5,12 +5,13 @@ module BowlingScorer
   # by checking what rolls have been set. This allows us to know
   # where we are in the current frame during the parsing process.
   class Frame
-    property! roll_one   : Token
-    property! roll_two   : Token
+    property! roll_one : Token
+    property! roll_two : Token
     property! roll_three : Token # 10th frame.
-    property! score      : Int32 # Running score of the game at this frame.
+    property! score : Int32      # Running score of the game at this frame.
 
     getter frame : Int32 # What frame is this?
+
 
     def initialize(@frame = frame)
     end
@@ -25,8 +26,8 @@ module BowlingScorer
 
       if frame == 10
         if !roll_two? ||
-          (roll_two.token_type == TokenType::SPARE ||
-          roll_two.token_type == TokenType::STRIKE) &&
+           (roll_two.token_type == TokenType::SPARE ||
+           roll_two.token_type == TokenType::STRIKE) &&
            !roll_three?
           return false
         end

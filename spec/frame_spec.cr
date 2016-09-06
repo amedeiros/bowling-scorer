@@ -74,10 +74,10 @@ describe BowlingScorer::Frame do
       end
 
       it "should be completed when roll one is a number and roll two is a spare and roll three is a strike" do
-        frame   = BowlingScorer::Frame.new(10)
-        number  = BowlingScorer::Token.new(BowlingScorer::TokenType::NUMBER, "1")
-        spare   = BowlingScorer::Token.new(BowlingScorer::TokenType::SPARE, "/")
-        strike  = BowlingScorer::Token.new(BowlingScorer::TokenType::STRIKE, "X")
+        frame = BowlingScorer::Frame.new(10)
+        number = BowlingScorer::Token.new(BowlingScorer::TokenType::NUMBER, "1")
+        spare = BowlingScorer::Token.new(BowlingScorer::TokenType::SPARE, "/")
+        strike = BowlingScorer::Token.new(BowlingScorer::TokenType::STRIKE, "X")
         frame.set_roll(number)
         frame.set_roll(spare)
         frame.set_roll(strike)
